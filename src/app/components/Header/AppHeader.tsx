@@ -1,7 +1,7 @@
-import React from "react";
-import IconHome from "../../icons/IconHome";
-import Login from "../Login";
-import { Link } from "react-router-dom";
+import React from 'react';
+import IconHome from '../../icons/IconHome';
+import Login from '../Login';
+import { Link } from 'react-router-dom';
 const AppHeader = () => {
   return (
     <div className="border-b-2 border-black">

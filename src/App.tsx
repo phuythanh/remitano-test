@@ -1,17 +1,9 @@
-import React from "react";
-import { Counter } from "./features/counter/Counter";
-import AppHeader from "./app/components/Header/AppHeader";
-import NotFound from "./app/components/NotFound";
-import HomePage from "./app/pages/HomePage";
-import SharePage from "./app/pages/SharePage";
-import { Helmet } from "react-helmet";
-import {
-  BrowserRouter,
-  Redirect,
-  Route,
-  RouteProps,
-  Switch,
-} from "react-router-dom";
+import AppHeader from './app/components/Header/AppHeader';
+import NotFound from './app/components/NotFound';
+import HomePage from './app/pages/HomePage';
+import SharePage from './app/pages/SharePage';
+import { Helmet } from 'react-helmet';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>
