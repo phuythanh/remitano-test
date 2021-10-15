@@ -1,7 +1,7 @@
 export interface BaseEntity {
   id: number;
 }
-export interface IMovie extends BaseEntity {
+export interface MovieResponse extends BaseEntity {
   url: string;
   userId: number;
   like: number;

@@ -1,9 +1,9 @@
 import IconThumbDown from 'app/icons/IconThumbDown';
 import IconThumbUp from 'app/icons/IconThumbUp';
-import { IMovie } from 'app/types/movie';
+import { MovieResponse } from 'app/types/movie';
 
 interface IProps {
-  movie: IMovie;
+  movie: MovieResponse;
 }
 export const Card = ({ movie }: IProps) => (
   <div className="flex justify-center m-5 space-x-12  rounded overflow-hidden shadow-lg ">

@@ -1,11 +1,11 @@
 import { List } from '../components/List/List';
 import { Card } from '../components/Card/Card';
 import { useFetch } from 'app/hooks/useFetch';
-import { IMovie } from 'app/types/movie';
+import { MovieResponse } from 'app/types/movie';
 import { fetchMovies } from 'app/apis/moveClient';
 import { Spinner } from 'app/components/Spinner/Spinner';
 const HomePage = () => {
-  const { loading: loadingMovie, data: originalMovies } = useFetch<IMovie[]>(fetchMovies);
+  const { loading: loadingMovie, data: originalMovies } = useFetch<MovieResponse[]>(fetchMovies);
   return (
     <div>
       {loadingMovie ? (
@@ -15,7 +15,7 @@ const HomePage = () => {
           <List
             className=""
             items={originalMovies || []}
-            renderItem={(item: IMovie, key: number) => <Card movie={item} key={key} />}
+            renderItem={(item: MovieResponse, key: number) => <Card movie={item} key={key} />}
           />
         </div>
       )}

@@ -4,6 +4,8 @@ import HomePage from './app/pages/HomePage';
 import SharePage from './app/pages/SharePage';
 import { Helmet } from 'react-helmet';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 function App() {
   return (
     <BrowserRouter>
@@ -13,6 +15,7 @@ function App() {
       <Switch>
         <Route>
           <div className="container mx-auto">
+            <ToastContainer />
             <div>
               <AppHeader />
             </div>
