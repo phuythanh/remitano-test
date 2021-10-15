@@ -3,9 +3,16 @@ import NotFound from './app/components/NotFound';
 import HomePage from './app/pages/HomePage';
 import SharePage from './app/pages/SharePage';
 import { Helmet } from 'react-helmet';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, RouteProps, Switch } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { useSelector, useDispatch } from 'react-redux';
+import { authorized } from './app/store/authSlice';
+const UserRoute = ({ children, ...props }: RouteProps) => {
+  const isAuthorized = useSelector(authorized);
+  return <Route {...props}>{isAuthorized ? children : 'You are not allowed to view this page'}</Route>;
+};
+
 function App() {
   return (
     <BrowserRouter>
@@ -14,20 +21,24 @@ function App() {
       </Helmet>
       <Switch>
         <Route>
-          <div className="container mx-auto">
+          <div className="lg:container mx-auto">
             <ToastContainer />
             <div>
               <AppHeader />
             </div>
-            <Switch>
-              <Route exact path="/">
-                <HomePage />
-              </Route>
-              <Route exact path="/share">
-                <SharePage />
-              </Route>
-              <Route component={NotFound} />
-            </Switch>
+            <div className="flex justify-center">
+              <Switch>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <UserRoute>
+                  <Route exact path="/share">
+                    <SharePage />
+                  </Route>
+                </UserRoute>
+                <Route component={NotFound} />
+              </Switch>
+            </div>
           </div>
         </Route>
       </Switch>

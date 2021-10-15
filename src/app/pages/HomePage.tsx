@@ -7,19 +7,19 @@ import { Spinner } from 'app/components/Spinner/Spinner';
 const HomePage = () => {
   const { loading: loadingMovie, data: originalMovies } = useFetch<MovieResponse[]>(fetchMovies);
   return (
-    <div>
+    <>
       {loadingMovie ? (
         <Spinner />
       ) : (
-        <div className="flex-col justify-center">
+        <>
           <List
-            className=""
+            className="flex-col justify-center lg:w-2/3"
             items={originalMovies || []}
             renderItem={(item: MovieResponse, key: number) => <Card movie={item} key={key} />}
           />
-        </div>
+        </>
       )}
-    </div>
+    </>
   );
 };
 

@@ -8,7 +8,9 @@ import { createFakeToken } from 'app/utils/token';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { authorized, addToken, emailLoggedIn } from '../store/authSlice';
+import { useHistory } from 'react-router';
 const Login = () => {
+  const history = useHistory();
   const isAuthorized = useSelector(authorized);
   const email = useSelector(emailLoggedIn);
   const dispatch = useDispatch();
@@ -54,6 +56,7 @@ const Login = () => {
 
   const shareMovie = (event: SyntheticEvent) => {
     event.preventDefault();
+    history.push('/share');
   };
 
   const showUserInfo = () => (

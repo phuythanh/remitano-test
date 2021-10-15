@@ -23,3 +23,8 @@ export const createUser = (user: UserRequest): Promise<UserResponse> =>
 
 export const getUserByEmail = (email: string): Promise<UserResponse[]> =>
   fetchAsync(`${baseApi}/api/user?${toUrlSearchParams({ email })}`);
+
+export const getYoutube = (id: string): Promise<any> => {
+  const getInfoUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${id}&fields=items/snippet/title,items/snippet/description&key=AIzaSyDSzW_JcVmEioQrG0Oab_DPJxso1UOPP4U`;
+  return fetchAsync(getInfoUrl);
+};

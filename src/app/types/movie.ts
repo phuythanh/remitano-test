@@ -10,4 +10,13 @@ export interface MovieResponse extends BaseEntity {
   userName: string;
   description: string;
   title: string;
+  youtubeId: string;
+}
+
+export interface MovieRequest {
+  url: string;
+  youtubeId: string;
+  userName: string;
+  description: string;
+  title: string;
 }
