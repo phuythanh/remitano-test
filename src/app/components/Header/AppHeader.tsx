@@ -1,6 +1,6 @@
 import React from 'react';
 import IconHome from '../../icons/IconHome';
-import Login from '../Login';
+import { Login } from '../Login/Login';
 import { Link } from 'react-router-dom';
 const AppHeader = () => {
   return (

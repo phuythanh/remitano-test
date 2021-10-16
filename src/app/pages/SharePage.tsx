@@ -16,22 +16,31 @@ const SharePage = () => {
     setUrl(event.target.value);
   };
   const onFinish = async (event: SyntheticEvent) => {
-    debugger;
     event.preventDefault();
+    debugger;
     const id = getYoutubeId(url);
-    const {
-      items: [info],
-    } = await getYoutube(id);
-    await createMovie({
-      url: url,
-      youtubeId: id,
-      description: info.snippet.description,
-      title: info.snippet.title,
-      userName: email,
-    });
+    if (id) {
+      try {
+        const youtubeInfo = await getYoutube(id);
+        const {
+          items: [info],
+        } = youtubeInfo;
+        if (info) {
+          await createMovie({
+            url: url,
+            youtubeId: id,
+            description: info.snippet.description,
+            title: info.snippet.title,
+            userName: email,
+          });
 
-    toast.info(`Share a youtube successfully`);
-    history.push('/');
+          toast.info(`Share a youtube successfully`);
+          history.push('/');
+          return;
+        }
+      } catch (e) {}
+    }
+    toast.error(`Please input valid youtube url`);
   };
   return (
     <form className="md:w-1/3 mt-24" onSubmit={onFinish}>
@@ -44,10 +53,11 @@ const SharePage = () => {
           <div className="md:w-2/3">
             <input
               className=" shadow bg-white rounded  appearance-none border leading-tight focus:outline-none focus:shadow-outline px-1 py-1 color:black w-5/6"
-              type="text"
+              type="url"
               name="url"
               placeholder="url"
               value={url}
+              required
               onChange={handleChange}
             />
           </div>

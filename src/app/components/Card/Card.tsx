@@ -32,7 +32,9 @@ export const Card = ({ movie }: IProps) => (
         </div>
       </div>
       <div>Description:</div>
-      <div className="text-black font-bold break-normal ">{movie.description}</div>
+      <div className="text-black font-bold break-normal ">
+        {movie.description?.length > 200 ? `${movie.description.substring(0, 200)}...` : movie.description}
+      </div>
     </div>
   </div>
 );

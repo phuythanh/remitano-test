@@ -7,9 +7,9 @@ import MD5 from 'crypto-js/md5';
 import { createFakeToken } from 'app/utils/token';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
-import { authorized, addToken, emailLoggedIn } from '../store/authSlice';
+import { authorized, addToken, emailLoggedIn } from '../../store/authSlice';
 import { useHistory } from 'react-router';
-const Login = () => {
+export const Login = () => {
   const history = useHistory();
   const isAuthorized = useSelector(authorized);
   const email = useSelector(emailLoggedIn);
@@ -84,11 +84,12 @@ const Login = () => {
       <form className="flex space-x-4" onSubmit={onFinish}>
         <input
           className=" shadow bg-white rounded  appearance-none border leading-tight focus:outline-none focus:shadow-outline px-1 py-1 color:black"
-          type="text"
+          type="email"
           name="email"
           placeholder="email"
           value={user.email}
           onChange={handleChange}
+          required
         />
         <input
           className="shadow bg-white rounded  appearance-none border leading-tight focus:outline-none focus:shadow-outline px-1 py-1"
@@ -97,6 +98,7 @@ const Login = () => {
           placeholder="password"
           value={user.password}
           onChange={handleChange}
+          required
         />
         <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Login / Register
@@ -106,5 +108,3 @@ const Login = () => {
   );
   return <div className="flex">{!isAuthorized ? showLogin() : showUserInfo()}</div>;
 };
-
-export default Login;
