@@ -1,7 +1,7 @@
 import AppHeader from './app/components/Header/AppHeader';
 import NotFound from './app/components/NotFound';
-import HomePage from './app/pages/HomePage';
-import SharePage from './app/pages/SharePage';
+import { HomePage } from './app/pages/HomePage';
+import { SharePage } from './app/pages/SharePage';
 import { Helmet } from 'react-helmet';
 import { BrowserRouter, Route, RouteProps, Switch } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';

@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router';
 
-const SharePage = () => {
+export const SharePage = () => {
   const history = useHistory();
   const email = useSelector(emailLoggedIn);
   const [url, setUrl] = useState<string>('');
@@ -77,5 +77,3 @@ const SharePage = () => {
     </form>
   );
 };
-
-export default SharePage;

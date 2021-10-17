@@ -4,7 +4,7 @@ import { UserRequest } from 'app/types/user';
 import { useState } from 'react';
 import { ChangeEvent, SyntheticEvent } from 'react';
 import MD5 from 'crypto-js/md5';
-import { createFakeToken } from 'app/utils/token';
+import { createFakeToken } from '../../utils/token';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { authorized, addToken, emailLoggedIn } from '../../store/authSlice';

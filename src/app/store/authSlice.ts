@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ACCESS_TOKEN_KEY } from 'app/apis/common/constants';
-import { decodedToken, validateToken } from 'app/utils/token';
+import { decodedToken } from 'app/utils/token';
 interface IAuth {
-  token: string;
   email: string;
+  expiresIn: number | null;
 }
+const tokenInfo = decodedToken(localStorage.getItem(ACCESS_TOKEN_KEY) || '');
 const initialState: IAuth = {
-  token: localStorage.getItem(ACCESS_TOKEN_KEY) || '',
-  email: decodedToken(localStorage.getItem(ACCESS_TOKEN_KEY) || '')?.email || '',
+  email: tokenInfo?.email || '',
+  expiresIn: tokenInfo?.exp || null,
 };
 
 export const authSlice = createSlice({
@@ -16,13 +17,14 @@ export const authSlice = createSlice({
   reducers: {
     addToken: (state, action) => {
       localStorage.setItem(ACCESS_TOKEN_KEY, action.payload.token);
-      state.token = action.payload.token;
+      const tokenInfo = decodedToken(action.payload.token);
       state.email = action.payload.email;
+      state.expiresIn = tokenInfo.exp;
     },
   },
 });
 
 export const { addToken } = authSlice.actions;
-export const authorized = (state: any) => validateToken(state.auth.token);
+export const authorized = (state: any) => state.auth.expiresIn && state.auth.expiresIn > new Date().getTime() / 1000;
 export const emailLoggedIn = (state: any) => state.auth.email;
 export default authSlice.reducer;

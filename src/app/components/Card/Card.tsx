@@ -6,7 +6,7 @@ interface IProps {
   movie: MovieResponse;
 }
 export const Card = ({ movie }: IProps) => (
-  <div className="lg:flex justify-center m-5 space-x-12  rounded overflow-hidden shadow-lg p-5">
+  <div className="lg:flex justify-center m-5 lg:space-x-12  rounded overflow-hidden shadow-lg p-5">
     <div className="flex">
       <iframe
         src={`https://www.youtube.com/embed/${movie.youtubeId}`}

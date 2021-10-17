@@ -4,7 +4,7 @@ import { useFetch } from 'app/hooks/useFetch';
 import { MovieResponse } from 'app/types/movie';
 import { fetchMovies } from 'app/apis/moveClient';
 import { Spinner } from 'app/components/Spinner/Spinner';
-const HomePage = () => {
+export const HomePage = () => {
   const { loading: loadingMovie, data: originalMovies } = useFetch<MovieResponse[]>(fetchMovies);
   return (
     <>
@@ -13,14 +13,12 @@ const HomePage = () => {
       ) : (
         <>
           <List
-            className="flex-col justify-center lg:w-2/3"
+            className="flex-col justify-center lg:w-60rem"
             items={originalMovies || []}
-            renderItem={(item: MovieResponse, key: number) => <Card movie={item} key={key} />}
+            renderItem={(item: MovieResponse) => <Card movie={item} />}
           />
         </>
       )}
     </>
   );
 };
-
-export default HomePage;

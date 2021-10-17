@@ -17,11 +17,3 @@ export const decodedToken = (token: string): IJwtToken => {
   if (!token) return null;
   return jwtdecode<IJwtToken>(token);
 };
-
-export const validateToken = (token: string) => {
-  const result = decodedToken(token);
-  if (result && result.exp >= new Date().getTime() / 1000) {
-    return true;
-  }
-  return false;
-};
