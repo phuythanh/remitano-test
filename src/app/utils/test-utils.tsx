@@ -7,8 +7,12 @@ import { Provider } from 'react-redux';
 import authReducer from '../store/authSlice';
 
 function render(
-  ui,
-  { preloadedState, store = configureStore({ reducer: { auth: authReducer }, preloadedState }), ...renderOptions } = {}
+  ui: any,
+  {
+    preloadedState,
+    store = configureStore({ reducer: { auth: authReducer }, preloadedState }),
+    ...renderOptions
+  }: { preloadedState?: any; store?: any } = {}
 ) {
   function Wrapper({ children }) {
     return <Provider store={store}>{children}</Provider>;

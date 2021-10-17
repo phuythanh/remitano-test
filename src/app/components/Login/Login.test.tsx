@@ -7,7 +7,7 @@ import { UserResponse } from 'app/types/user';
 import * as userClient from 'app/apis/userClient';
 afterEach(cleanup);
 
-describe('User have not logged in', () => {
+describe('User has not logged in', () => {
   it('Should show user/pass inputs', () => {
     const { getByText, getByPlaceholderText } = render(<Login />);
 
@@ -21,9 +21,9 @@ describe('User have not logged in', () => {
       id: 1,
       password: 'e10adc3949ba59abbe56e057f20f883e',
     };
-    const addMock = jest.spyOn(userClient, 'getUserByEmail');
+    const getUserByEmailMock = jest.spyOn(userClient, 'getUserByEmail');
 
-    addMock.mockImplementation((email: string) => Promise.resolve([user]));
+    getUserByEmailMock.mockImplementation((email: string) => Promise.resolve([user]));
     const { getByText, getByPlaceholderText, debug } = render(<Login />);
     const emailE = getByPlaceholderText('email');
     fireEvent.change(emailE, { target: { value: 'test@gmail.com' } });
@@ -39,7 +39,6 @@ describe('User have not logged in', () => {
       })
     );
     await waitFor(() => expect(screen.getByText(/Welcome/i)).toBeInTheDocument());
-    debug();
   });
 
   it('Should show user/pass inputs after logged in unsuccessfully', async () => {
@@ -48,9 +47,9 @@ describe('User have not logged in', () => {
       id: 1,
       password: 'e10adc3949ba59abbe56e057f20f883e',
     };
-    const addMock = jest.spyOn(userClient, 'getUserByEmail');
+    const getUserByEmailMock = jest.spyOn(userClient, 'getUserByEmail');
 
-    addMock.mockImplementation((email: string) => Promise.resolve([user]));
+    getUserByEmailMock.mockImplementation((email: string) => Promise.resolve([user]));
     const { getByText, getByPlaceholderText, debug } = render(<Login />);
     const emailE = getByPlaceholderText('email');
     fireEvent.change(emailE, { target: { value: 'test@gmail.com' } });
@@ -66,6 +65,5 @@ describe('User have not logged in', () => {
       })
     );
     await waitFor(() => expect(getByPlaceholderText(/email/i)).toBeInTheDocument());
-    debug();
   });
 });
